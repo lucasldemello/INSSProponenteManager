@@ -42,15 +42,22 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
-# Use Sass to process CSS
-# gem "sassc-rails"
+# por ser teimoso e querer usar o rails 7. Tive que adicionar esses dois para poder trabalhar com o bootstrap
+gem 'sassc-rails'
+gem "bootstrap", "~> 5.2.2"
+gem 'mini_racer'
 
-# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "rest-client", "~> 2.1"
+gem "kaminari", "~> 1.2"
+gem "sidekiq", "~> 6.5"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "rubocop", require: false
+  gem "rspec-rails"
+  gem "factory_bot_rails"
+  gem "faker"
 end
 
 group :development do
