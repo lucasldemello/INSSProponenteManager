@@ -33,7 +33,6 @@ services:
       - '6379:6379'
     volumes:
       - 'redis:/data'
-
   sidekiq:
     depends_on:
       - db
@@ -41,10 +40,12 @@ services:
     build: .
     command: bundle exec sidekiq
     volumes:
-      - '.:/project'
-      - '/project/tmp' # don't mount tmp directory
+      - .:/usr/src/app
+      - .:/usr/src/app/tmp # don't mount tmp directory
     environment:
-      - REDIS_URL_SIDEKIQ=redis://redis:6379/1
+      RAILS_ENV: development
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
 volumes:
   pg_data:
   redis:
