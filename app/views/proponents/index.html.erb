@@ -1,0 +1,31 @@
+<h1>Proponentes</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>CPF</th>
+      <th>Birthdate</th>
+      <th>Salary</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @proponents.each do |proponent| %>
+      <tr>
+        <td><%= proponent.name %></td>
+        <td><%= proponent.cpf %></td>
+        <td><%= proponent.birthdate.strftime("%d/%m/%Y") if proponent.birthdate %></td>
+        <td><%= number_to_currency(proponent.salary, unit: "R$", separator: ",", delimiter: ".") %></td>
+        <td>
+          <%= link_to 'Edit', edit_proponent_path(proponent), class: 'btn btn-primary' %>
+          <%= link_to 'Delete', proponent_path(proponent), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @proponents %>
+
+<%= link_to 'New Proponent', new_proponent_path, class: 'btn btn-success' %>
