@@ -14,7 +14,7 @@ services:
     environment:
       - HISTFILE=/usr/src/app/log/.bash_history
       - ENVIRONMENT=local
-      - REDIS_URL_SIDEKIQ=redis://redis:6379/1
+      - REDIS_URL_SIDEKIQ=redis://redis:6379/0
     depends_on:
       - db
       - redis
@@ -46,6 +46,7 @@ services:
       RAILS_ENV: development
       REDIS_HOST: redis
       REDIS_PORT: 6379
+      REDIS_URL_SIDEKIQ: redis://redis:6379/0
 volumes:
   pg_data:
   redis:
