@@ -14,8 +14,10 @@ services:
     environment:
       - HISTFILE=/usr/src/app/log/.bash_history
       - ENVIRONMENT=local
+      - REDIS_URL_SIDEKIQ=redis://redis:6379/1
     depends_on:
       - db
+      - redis
   db:
     image: postgres:13
     ports:
@@ -34,8 +36,8 @@ services:
 
   sidekiq:
     depends_on:
-      - 'db'
-      - 'redis'
+      - db
+      - redis
     build: .
     command: bundle exec sidekiq
     volumes:

@@ -18,7 +18,10 @@ RUN gem update --system && gem install bundler
 
 WORKDIR /usr/src/app
 
-ENTRYPOINT ["./entrypoint.sh"]
+COPY entrypoint.sh /usr/src/app/
+RUN chmod +x /usr/src/app/entrypoint.sh
+
+ENTRYPOINT ["sh", "./entrypoint.sh"]
 
 EXPOSE 3001
 
