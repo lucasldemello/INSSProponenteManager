@@ -1,9 +1,18 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Proponent, type: :model do
-
-describe 'associations' do
+  describe 'associations' do
     it { should have_one(:address) }
+  end
+
+  describe 'validations' do
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:cpf) }
+    it { should validate_presence_of(:birthdate) }
+    it { should validate_presence_of(:salary) }
+    it { should validate_presence_of(:inss_discount)}
   end
 
   it 'persists a new Proponent' do
@@ -19,7 +28,7 @@ describe 'associations' do
   end
 
   it 'does not save a Proponent without required fields' do
-    proponent = Proponent.new()
+    proponent = Proponent.new
 
     expect(proponent.save).to be_falsey
     expect(proponent.errors[:name]).to include("can't be blank")

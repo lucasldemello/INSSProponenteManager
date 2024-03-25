@@ -1,11 +1,8 @@
+# frozen_string_literal: true
+
 class Proponent < ApplicationRecord
-
   has_one :address
+  has_many :proponent_phones
 
-  validates :name, presence: true
-  validates :cpf, presence: true
-  validates :birthdate, presence: true
-  validates :salary, presence: true
-  validates :inss_discount, presence: true
-
+  validates_presence_of :name, :cpf, :birthdate, :salary, :inss_discount
 end
