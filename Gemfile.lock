@@ -208,7 +208,7 @@ GEM
       psych (>= 4.0.0)
     redis (4.8.1)
     regexp_parser (2.9.0)
-    reline (0.4.3)
+    reline (0.5.0)
       io-console (~> 0.5)
     rest-client (2.1.0)
       http-accept (>= 1.7.0, < 2.0)
@@ -255,6 +255,8 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    shoulda-matchers (6.2.0)
+      activesupport (>= 5.2.0)
     sidekiq (6.5.12)
       connection_pool (>= 2.2.5, < 3)
       rack (~> 2.0)
@@ -310,6 +312,7 @@ DEPENDENCIES
   rspec-rails
   rubocop
   sassc-rails
+  shoulda-matchers
   sidekiq (~> 6.5)
   sprockets-rails
   stimulus-rails

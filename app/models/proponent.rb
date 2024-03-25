@@ -1,4 +1,7 @@
 class Proponent < ApplicationRecord
+
+  has_one :address
+
   validates :name, presence: true
   validates :cpf, presence: true
   validates :birthdate, presence: true
