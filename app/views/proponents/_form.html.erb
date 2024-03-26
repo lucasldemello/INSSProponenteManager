@@ -1,40 +1,106 @@
-<%= form_with(model: @proponent, url: proponents_path,  data: {turbo: false}) do |form| %>
-  <% if proponent.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(proponent.errors.count, "error") %> prohibited this proponent from being saved:</h2>
+<div class="container p-4">
+  <%= form_with(model: @proponent, url: proponents_path,  data: {turbo: false}) do |form| %>
+    <% if proponent.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(proponent.errors.count, "error") %> prohibited this proponent from being saved:</h2>
 
-      <ul>
-      <% proponent.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% proponent.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="row">
+      <div class="form-group col">
+        <%= form.label :name %>
+        <%= form.text_field :name, class: 'form-control' %>
+      </div>
+
+      <div class="form-group col">
+        <%= form.label :cpf %>
+        <%= form.text_field :cpf, class: 'form-control' %>
+      </div>
+
+      <div class="form-group col">
+        <%= form.label :birthdate %>
+        <%= form.date_field :birthdate, class: 'form-control' %>
+      </div>
     </div>
+
+    <div class="row">
+      <div class="form-group col">
+        <%= form.label :salary %>
+        <%= form.text_field :salary, class: 'form-control' %>
+      </div>
+
+      <div class="form-group col">
+        <%= form.label :inss_discount %>
+        <%= form.text_field :inss_discount, class: 'form-control' %>
+      </div>
+    </div>
+
+    <%= form.fields_for :address do |address_fields| %>
+      <div class="nested-fields">
+        <div class="row">
+          <div class="form-group col">
+            <%= address_fields.label :zip_code %>
+            <%= address_fields.text_field :zip_code, class: 'form-control' %>
+          </div>
+
+          <div class="form-group col">
+            <%= address_fields.label :street %>
+            <%= address_fields.text_field :street, class: 'form-control' %>
+          </div>
+
+          <div class="form-group col">
+            <%= address_fields.label :building_number %>
+            <%= address_fields.text_field :building_number, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col">
+            <%= address_fields.label :district %>
+            <%= address_fields.text_field :district, class: 'form-control' %>
+          </div>
+
+          <div class="form-group col">
+            <%= address_fields.label :city %>
+            <%= address_fields.text_field :district, class: 'form-control' %>
+          </div>
+
+          <div class="form-group col">
+            <%= address_fields.label :state %>
+            <%= address_fields.text_field :state, class: 'form-control' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <% 3.times do %>
+      <%= form.fields_for :proponent_phone do |proponent_phone_fields| %>
+        <div class="nested-fields">
+          <div class="row">
+            <div class="form-group col md-3">
+              <%= proponent_phone_fields.label :phone_type %>
+              <%= proponent_phone_fields.text_field :phone_type, class: 'form-control' %>
+            </div>
+
+            <div class="form-group col md-3">
+              <%= proponent_phone_fields.label :phone_number %>
+              <%= proponent_phone_fields.text_field :phone_number, class: 'form-control' %>
+            </div>
+
+            <div class="form-group col md-3">
+              <%= proponent_phone_fields.label :info %>
+              <%= proponent_phone_fields.text_field :info, class: 'form-control' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+    <%= form.submit 'Save', class: 'btn btn-primary' %>
   <% end %>
-
-  <div class="form-group">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :cpf %>
-    <%= form.text_field :cpf, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :birthdate %>
-    <%= form.date_field :birthdate, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :salary %>
-    <%= form.text_field :salary, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :inss_discount %>
-    <%= form.text_field :inss_discount, class: 'form-control' %>
-  </div>
-
-  <%= form.submit 'Save', class: 'btn btn-primary' %>
-<% end %>
+</div>
