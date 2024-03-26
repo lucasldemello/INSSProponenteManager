@@ -39,41 +39,41 @@
 }
 </style>
 <div class="container p-4">
-<h1>Proponentes</h1>
+  <h1>Proponentes</h1>
 
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>CPF</th>
-      <th>Data de Nascimento</th>
-      <th>Salário</th>
-      <th>Aliquota INSS</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @proponents.each do |proponent| %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= proponent.name %></td>
-        <td><%= proponent.cpf %></td>
-        <td><%= proponent.birthdate.strftime("%d/%m/%Y") if proponent.birthdate %></td>
-        <td><%= number_to_currency(proponent.salary, unit: "R$", separator: ",", delimiter: ".") %></td>
-        <td><%= number_to_currency(proponent.inss_discount, unit: "R$", separator: ",", delimiter: ".") %></td>
-        <td>
-          <%= link_to 'Edit', edit_proponent_path(proponent), class: 'btn btn-primary' %>
-          <%= form_for(proponent, url: proponent_path(proponent), method: :delete, data: { confirm: 'Are you sure?' }) do |f| %>
-            <%= f.submit 'Delete', class: 'btn btn-danger', data: { disable_with: 'Deleting...' } %>
-          <% end %>
-        </td>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>Data de Nascimento</th>
+        <th>Salário</th>
+        <th>Aliquota INSS</th>
+        <th>Actions</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<div class="container d-flex justify-content-center align-items-center" style="min-height: 10vh;">
-  <%= paginate @proponents %>
-</div>
-<%= link_to 'New Proponent', new_proponent_path, class: 'btn btn-success' %>
+    </thead>
+    <tbody>
+      <% @proponents.each do |proponent| %>
+        <tr>
+          <td><%= proponent.name %></td>
+          <td><%= proponent.cpf %></td>
+          <td><%= proponent.birthdate.strftime("%d/%m/%Y") if proponent.birthdate %></td>
+          <td><%= number_to_currency(proponent.salary, unit: "R$", separator: ",", delimiter: ".") %></td>
+          <td><%= number_to_currency(proponent.inss_discount, unit: "R$", separator: ",", delimiter: ".") %></td>
+          <td>
+            <%= link_to 'Edit', edit_proponent_path(proponent), class: 'btn btn-primary' %>
+            <%= form_for(proponent, url: proponent_path(proponent), method: :delete, data: { confirm: 'Are you sure?' }) do |f| %>
+              <%= f.submit 'Delete', class: 'btn btn-danger', data: { disable_with: 'Deleting...' } %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="container d-flex justify-content-center align-items-center" style="min-height: 10vh;">
+    <%= paginate @proponents %>
+  </div>
+  <%= link_to 'New Proponent', new_proponent_path, class: 'btn btn-success' %>
+  <%= link_to 'Relatório Faixa Salarial', proponents_report_path, class: 'btn btn-primary' %>
 </div>

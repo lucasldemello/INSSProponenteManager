@@ -42,6 +42,10 @@ class ProponentsController < ApplicationController
     redirect_to proponents_path, notice: 'Proponent was successfully deleted.'
   end
 
+  def report
+    @proponents_report = Proponent.proponents_by_salary_range
+  end
+
   private
 
   def proponent_params

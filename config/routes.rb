@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   post 'inss_discount/calculate'
   resources :proponents, only: [:index, :create, :new, :update, :edit, :destroy]
+  get 'proponents_report', to: 'proponents#report'
 
   root "proponents#index"
 end
