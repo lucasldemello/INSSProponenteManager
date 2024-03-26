@@ -18,6 +18,8 @@ services:
     depends_on:
       - db
       - redis
+    stdin_open: true
+    tty: true
   db:
     image: postgres:13
     ports:

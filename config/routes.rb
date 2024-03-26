@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  resources :proponents, only: [:index, :create, :new, :update, :destroy]
+  post 'inss_discount/calculate'
+  resources :proponents, only: [:index, :create, :new, :update, :edit, :destroy]
 
-  # Defines the root path route ("/")
   root "proponents#index"
 end
