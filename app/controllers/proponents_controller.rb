@@ -5,6 +5,8 @@ class ProponentsController < ApplicationController
 
   def new
     @proponent = Proponent.new
+    @proponent.build_address
+    @proponent.proponent_phones.build
   end
 
   def create
@@ -20,6 +22,10 @@ class ProponentsController < ApplicationController
     end
   end
 
+  def show
+    @proponent = Proponent.find(params[:id])
+  end
+
   def edit
     @proponent = Proponent.find(params[:id])
   end
@@ -27,7 +33,7 @@ class ProponentsController < ApplicationController
   def update
     @proponent = Proponent.find(params[:id])
     update_params = proponent_params
-    update_params[:salary] = update_params[:salary].replace('R$', '').gsub('.', '').gsub(',', '.') if update_params[:salary].present?
+    update_params[:salary] = update_params[:salary].replace('R$', '').gsub('.', '').gsub(',', '.') if update_params[:salary].present? and update_params[:salary].include?('R$')
 
     if @proponent.update(update_params)
       redirect_to proponents_path, notice: "Proponent updated successfully!"
@@ -49,6 +55,10 @@ class ProponentsController < ApplicationController
   private
 
   def proponent_params
-    params.require(:proponent).permit(:name, :cpf, :birthdate, :salary, :inss_discount)
+    params.require(:proponent).permit(
+      :name, :cpf, :birthdate, :salary, :inss_discount,
+      address_attributes: [:id, :street, :building_number, :district, :city, :state, :zip_code],
+      proponent_phones_attributes: [:id, :phone_type, :phone_number, :info, :_destroy]
+    )
   end
 end

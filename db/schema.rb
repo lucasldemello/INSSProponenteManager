@@ -29,7 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_25_190804) do
 
   create_table "proponent_phones", force: :cascade do |t|
     t.bigint "proponent_id", null: false
-    t.integer "phone_type", default: 0
+    t.string "phone_type", default: "0"
     t.string "phone_number", null: false
     t.string "info", default: ""
     t.datetime "created_at", null: false

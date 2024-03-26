@@ -1,5 +1,5 @@
 <div class="container p-4">
-  <%= form_with(model: @proponent, url: proponents_path, data: { turbo: false }) do |form| %>
+  <%= form_with(model: @proponent, data: { turbo: false }) do |form| %>
     <% if proponent.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(proponent.errors.count, "error") %> prohibited this proponent from being saved:</h2>
@@ -82,27 +82,26 @@
       </div>
     <% end %>
 
-    <% 3.times do %>
-      <%= form.fields_for :proponent_phone do |proponent_phone_fields| %>
-        <div class="nested-fields">
-          <div class="row">
-            <div class="form-group col-md-3">
-              <%= proponent_phone_fields.label :phone_type, 'Tipo de telefone' %>
-              <%= proponent_phone_fields.select :phone_type, phone_type_options, { prompt: 'Selecione o tipo' }, class: 'form-control' %>
-            </div>
+    
+    <%= form.fields_for :proponent_phones do |proponent_phone_fields| %>
+      <div class="nested-fields">
+        <div class="row">
+          <div class="form-group col-md-3">
+            <%= proponent_phone_fields.label :phone_type, 'Tipo de telefone' %>
+            <%= proponent_phone_fields.select :phone_type, phone_type_options, { prompt: 'Selecione o tipo' }, class: 'form-control' %>
+          </div>
 
-            <div class="form-group col-md-3">
-              <%= proponent_phone_fields.label :phone_number, 'Número' %>
-              <%= proponent_phone_fields.text_field :phone_number, class: 'form-control' %>
-            </div>
+          <div class="form-group col-md-3">
+            <%= proponent_phone_fields.label :phone_number, 'Número' %>
+            <%= proponent_phone_fields.text_field :phone_number, class: 'form-control' %>
+          </div>
 
-            <div class="form-group col-md-6">
-              <%= proponent_phone_fields.label :info, 'Observação' %>
-              <%= proponent_phone_fields.text_field :info, class: 'form-control' %>
-            </div>
+          <div class="form-group col-md-6">
+            <%= proponent_phone_fields.label :info, 'Observação' %>
+            <%= proponent_phone_fields.text_field :info, class: 'form-control' %>
           </div>
         </div>
-      <% end %>
+      </div>
     <% end %>
     <%= form.submit 'Salvar', class: 'btn btn-primary mt-4' %>
   <% end %>
@@ -159,12 +158,6 @@
 
     // Adicionar evento change para enviar a requisição AJAX após a formatação
     salaryInput.addEventListener('change', sendAjaxRequest);
-
-    const proponentForm = document.getElementById('proponent-form');
-    proponentForm.addEventListener('submit', function(event) {
-      const salaryValue = salaryInput.value.replace(/[^\d,.]/g, '');
-      proponentForm.querySelector('#proponent_salary').value = salaryValue;
-    });
   });
 
 </script>

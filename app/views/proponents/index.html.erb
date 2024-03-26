@@ -7,36 +7,44 @@
     background-color: white;
     border: 1px solid #DDD;
     border-left-width: 0;
-}
+  }
 
-.pagination {
-    border-left: 1px solid #ddd;
-    .first{
-        padding : 0;
-        float: none;
-        border: none;
-    }
-    .prev {
-        padding : 0;
-        float: none;
-        border: none;
-    }
-    .page{
-        padding : 0;
-        float: none;
-        border: none;
-    }
-    .next{
-        padding : 0;
-        float: none;
-        border: none;
-    }
-    .last{
-        padding : 0;
-        float: none;
-        border: none;
-    }
-}
+  .pagination {
+      border-left: 1px solid #ddd;
+      .first{
+          padding : 0;
+          float: none;
+          border: none;
+      }
+      .prev {
+          padding : 0;
+          float: none;
+          border: none;
+      }
+      .page{
+          padding : 0;
+          float: none;
+          border: none;
+      }
+      .next{
+          padding : 0;
+          float: none;
+          border: none;
+      }
+      .last{
+          padding : 0;
+          float: none;
+          border: none;
+      }
+  }
+  .table-actions {
+    display: flex;
+    gap: 5px;
+  }
+
+  .table-actions button {
+    white-space: nowrap;
+  }
 </style>
 <div class="container p-4">
   <h1>Funcionário</h1>
@@ -60,7 +68,8 @@
           <td><%= proponent.birthdate.strftime("%d/%m/%Y") if proponent.birthdate %></td>
           <td><%= number_to_currency(proponent.salary, unit: "R$", separator: ",", delimiter: ".") %></td>
           <td><%= number_to_currency(proponent.inss_discount, unit: "R$", separator: ",", delimiter: ".") %></td>
-          <td>
+          <td class="table-actions">
+            <%= link_to 'Visualizar', proponent_path(proponent), class: 'btn btn-info' %>
             <%= link_to 'Editar', edit_proponent_path(proponent), class: 'btn btn-primary' %>
             <%= form_for(proponent, url: proponent_path(proponent), method: :delete, data: { confirm: 'Are you sure?' }) do |f| %>
               <%= f.submit 'Deletar', class: 'btn btn-danger', data: { disable_with: 'Deleting...' } %>

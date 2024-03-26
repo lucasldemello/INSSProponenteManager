@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
 class Proponent < ApplicationRecord
-  has_one :address
-  has_many :proponent_phones
+  has_one :address, dependent: :destroy
+  has_many :proponent_phones, dependent: :destroy
 
   validates_presence_of :name, :cpf, :birthdate, :salary, :inss_discount
+
+  accepts_nested_attributes_for :address
+  accepts_nested_attributes_for :proponent_phones, allow_destroy: true
 
   def self.proponents_by_salary_range
     select(
