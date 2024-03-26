@@ -30,4 +30,12 @@ module ApplicationHelper
       ['TO', 'TO']
     ]
   end
+
+  def phone_type_options
+    [
+      ['Celular', 0],
+      ['Telefone Fixo', 1],
+      ['Telefone de Referência', 2]
+    ]
+  end
 end

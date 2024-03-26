@@ -14,7 +14,7 @@
 
     <div class="row">
       <div class="form-group col">
-        <%= form.label :name %>
+        <%= form.label 'Nome' %>
         <%= form.text_field :name, class: 'form-control' %>
       </div>
 
@@ -24,19 +24,19 @@
       </div>
 
       <div class="form-group col">
-        <%= form.label :birthdate %>
+        <%= form.label 'Data de Nascimento' %>
         <%= form.date_field :birthdate, class: 'form-control' %>
       </div>
     </div>
 
     <div class="row">
       <div class="form-group col">
-        <%= form.label :salary, "Salary (R$)" %>
+        <%= form.label :salary, "Salário (R$)" %>
         <%= form.text_field :salary, id: 'salary-input', class: 'form-control', data: { input_mask: 'currency' } %>
       </div>
 
       <div class="form-group col">
-        <%= form.label :inss_discount, "INSS Discount (R$)" %>
+        <%= form.label :inss_discount, "Alíquota INSS (R$)" %>
         <div class="input-group">
           <%= form.text_field :inss_discount, id: 'inss-discount-input', class: 'form-control', readonly: true, data: { input_mask: 'currency' } %>
         </div>
@@ -47,34 +47,34 @@
       <div class="nested-fields">
         <div class="row">
           <div class="form-group col">
-            <%= address_fields.label :zip_code %>
+            <%= address_fields.label :zip_code, 'CEP' %>
             <%= address_fields.text_field :zip_code, class: 'form-control' %>
           </div>
 
           <div class="form-group col">
-            <%= address_fields.label :street %>
+            <%= address_fields.label :street, 'Rua' %>
             <%= address_fields.text_field :street, class: 'form-control' %>
           </div>
 
           <div class="form-group col">
-            <%= address_fields.label :building_number %>
+            <%= address_fields.label :building_number, 'Número' %>
             <%= address_fields.text_field :building_number, class: 'form-control' %>
           </div>
         </div>
 
         <div class="row">
           <div class="form-group col">
-            <%= address_fields.label :district %>
+            <%= address_fields.label :district, 'Bairro' %>
             <%= address_fields.text_field :district, class: 'form-control' %>
           </div>
 
           <div class="form-group col">
-            <%= address_fields.label :city %>
+            <%= address_fields.label :city, 'Cidade' %>
             <%= address_fields.text_field :city, class: 'form-control' %>
           </div>
 
           <div class="form-group col">
-            <%= address_fields.label :state %>
+            <%= address_fields.label :state, 'Estado' %>
             <%= address_fields.select :state, brazilian_states_options, { prompt: 'Selecione o estado' }, class: 'form-control' %>
           </div>
 
@@ -87,24 +87,24 @@
         <div class="nested-fields">
           <div class="row">
             <div class="form-group col-md-3">
-              <%= proponent_phone_fields.label :phone_type %>
-              <%= proponent_phone_fields.text_field :phone_type, class: 'form-control' %>
+              <%= proponent_phone_fields.label :phone_type, 'Tipo de telefone' %>
+              <%= proponent_phone_fields.select :phone_type, phone_type_options, { prompt: 'Selecione o tipo' }, class: 'form-control' %>
             </div>
 
             <div class="form-group col-md-3">
-              <%= proponent_phone_fields.label :phone_number %>
+              <%= proponent_phone_fields.label :phone_number, 'Número' %>
               <%= proponent_phone_fields.text_field :phone_number, class: 'form-control' %>
             </div>
 
-            <div class="form-group col-md-3">
-              <%= proponent_phone_fields.label :info %>
+            <div class="form-group col-md-6">
+              <%= proponent_phone_fields.label :info, 'Observação' %>
               <%= proponent_phone_fields.text_field :info, class: 'form-control' %>
             </div>
           </div>
         </div>
       <% end %>
     <% end %>
-    <%= form.submit 'Save', class: 'btn btn-primary' %>
+    <%= form.submit 'Salvar', class: 'btn btn-primary mt-4' %>
   <% end %>
 </div>
 

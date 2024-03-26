@@ -39,8 +39,7 @@
 }
 </style>
 <div class="container p-4">
-  <h1>Proponentes</h1>
-
+  <h1>Funcionário</h1>
 
   <table class="table">
     <thead>
@@ -62,9 +61,9 @@
           <td><%= number_to_currency(proponent.salary, unit: "R$", separator: ",", delimiter: ".") %></td>
           <td><%= number_to_currency(proponent.inss_discount, unit: "R$", separator: ",", delimiter: ".") %></td>
           <td>
-            <%= link_to 'Edit', edit_proponent_path(proponent), class: 'btn btn-primary' %>
+            <%= link_to 'Editar', edit_proponent_path(proponent), class: 'btn btn-primary' %>
             <%= form_for(proponent, url: proponent_path(proponent), method: :delete, data: { confirm: 'Are you sure?' }) do |f| %>
-              <%= f.submit 'Delete', class: 'btn btn-danger', data: { disable_with: 'Deleting...' } %>
+              <%= f.submit 'Deletar', class: 'btn btn-danger', data: { disable_with: 'Deleting...' } %>
             <% end %>
           </td>
         </tr>
@@ -74,6 +73,6 @@
   <div class="container d-flex justify-content-center align-items-center" style="min-height: 10vh;">
     <%= paginate @proponents %>
   </div>
-  <%= link_to 'New Proponent', new_proponent_path, class: 'btn btn-success' %>
+  <%= link_to 'Novo Funcionário', new_proponent_path, class: 'btn btn-success' %>
   <%= link_to 'Relatório Faixa Salarial', proponents_report_path, class: 'btn btn-primary' %>
 </div>
