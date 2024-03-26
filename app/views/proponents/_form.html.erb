@@ -107,9 +107,11 @@
   <% end %>
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const salaryInput = document.getElementById('salary-input');
+<div id="my-content"></div>
+<turbo-stream action="prepend" target="my-content">
+  <template>
+    <script>
+      const salaryInput = document.getElementById('salary-input');
     const inssDiscountInput = document.getElementById('inss-discount-input');
 
     // Função para formatar o valor do salário
@@ -158,6 +160,6 @@
 
     // Adicionar evento change para enviar a requisição AJAX após a formatação
     salaryInput.addEventListener('change', sendAjaxRequest);
-  });
-
-</script>
+    </script>
+  <template>
+</turbo-stream>

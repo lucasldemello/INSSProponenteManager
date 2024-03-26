@@ -25,9 +25,12 @@
 
   <button onclick="javascript:history.back()" class="btn btn-primary">Voltar</button>
 </div>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-  var ctx = document.getElementById('myChart').getContext('2d');
+
+<div id="my-content"></div>
+<turbo-stream action="prepend" target="my-content">
+  <template>
+    <script>
+      var ctx = document.getElementById('myChart').getContext('2d');
 
   var data = <%= raw @proponents_report.to_json %>;
 
@@ -71,5 +74,6 @@
       },
     }
   });
-});
-</script>
+    </script>
+  </template>
+</turbo-stream>
