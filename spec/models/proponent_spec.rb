@@ -12,7 +12,7 @@ RSpec.describe Proponent, type: :model do
     it { should validate_presence_of(:cpf) }
     it { should validate_presence_of(:birthdate) }
     it { should validate_presence_of(:salary) }
-    it { should validate_presence_of(:inss_discount)}
+    it { should validate_presence_of(:inss_discount) }
   end
 
   it 'persists a new Proponent' do

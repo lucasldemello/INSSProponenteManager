@@ -3,14 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe Address, type: :model do
-
   describe 'associations' do
     it { should belong_to(:proponent) }
   end
 
   describe 'validations' do
-    let! (:proponent) { create(:proponent) }
-    subject { build(:address, proponent: proponent) }
+    let!(:proponent) { create(:proponent) }
+    subject { build(:address, proponent:) }
     it { should validate_presence_of(:street) }
     it { should validate_presence_of(:building_number) }
     it { should validate_presence_of(:district) }
