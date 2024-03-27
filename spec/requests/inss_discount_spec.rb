@@ -37,7 +37,7 @@ RSpec.describe InssDiscountController, type: :controller do
     end
 
     context 'when the salary is above the permitted limit' do
-      let(:high_salary) { 1500000.0 }
+      let(:high_salary) { 1_500_000.0 }
 
       before do
         post :calculate, params: { salary: high_salary }

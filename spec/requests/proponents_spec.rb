@@ -19,9 +19,9 @@ RSpec.describe ProponentsController, type: :controller do
   describe 'POST #create' do
     context 'with valid parameters' do
       it 'creates a new proponent' do
-        expect {
+        expect do
           post :create, params: { proponent: FactoryBot.attributes_for(:proponent) }
-        }.to change(Proponent, :count).by(1)
+        end.to change(Proponent, :count).by(1)
       end
 
       it 'redirects to the proponents index page' do
@@ -33,9 +33,9 @@ RSpec.describe ProponentsController, type: :controller do
 
     context 'with invalid parameters' do
       it 'does not create a new proponent' do
-        expect {
+        expect do
           post :create, params: { proponent: FactoryBot.attributes_for(:proponent, name: nil) }
-        }.to_not change(Proponent, :count)
+        end.to_not change(Proponent, :count)
       end
 
       it 'renders the new template' do
@@ -98,9 +98,9 @@ RSpec.describe ProponentsController, type: :controller do
     let!(:proponent) { FactoryBot.create(:proponent) }
 
     it 'destroys the proponent' do
-      expect {
+      expect do
         delete :destroy, params: { id: proponent.id }
-      }.to change(Proponent, :count).by(-1)
+      end.to change(Proponent, :count).by(-1)
     end
 
     it 'redirects to the proponents index page' do

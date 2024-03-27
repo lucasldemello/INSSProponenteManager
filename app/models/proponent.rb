@@ -18,6 +18,6 @@ class Proponent < ApplicationRecord
          WHEN salary BETWEEN 3134.41 AND 6101.06 THEN 'De R$ 3.134,41 até R$ 6.101,06'
          ELSE 'Superior a R$ 6.101,06'
        END AS salary_range, COUNT(*) AS count"
-    ).group("salary_range").order("salary_range")
+    ).group('salary_range').order('salary_range')
   end
 end

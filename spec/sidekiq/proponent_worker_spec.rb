@@ -13,7 +13,7 @@ RSpec.describe ProponentWorker, type: :worker do
 
     it 'finds the correct proponent and updates attributes' do
       expect(Proponent).to receive(:find).with(proponent_id).and_return(proponent)
-      expect(proponent).to receive(:update).with({:inss_discount=>281.62, :salary=>3000.0})
+      expect(proponent).to receive(:update).with({ inss_discount: 281.62, salary: 3000.0 })
 
       ProponentWorker.new.perform(proponent_id, attributes)
     end

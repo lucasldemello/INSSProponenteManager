@@ -11,7 +11,7 @@ class InssCalcService
 
   private
 
-  def calculate_inss()
+  def calculate_inss
     bands = [
       { lower_limit: 0, upper_limit: 1045, rate: 0.075 },
       { lower_limit: 1045.01, upper_limit: 2089.60, rate: 0.09 },

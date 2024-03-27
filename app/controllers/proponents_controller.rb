@@ -12,11 +12,14 @@ class ProponentsController < ApplicationController
   def create
     create_params = proponent_params
 
-    create_params[:salary] = create_params[:salary].gsub(/R\$|\./, '').sub(',', '.')[1..-1] if create_params[:salary].present?
+    if create_params[:salary].present?
+      create_params[:salary] =
+        create_params[:salary].gsub(/R\$|\./, '').sub(',', '.')[1..-1]
+    end
     @proponent = Proponent.new(create_params)
 
     if @proponent.save
-      redirect_to proponents_path, notice: "Proponent created successfully!"
+      redirect_to proponents_path, notice: 'Proponent created successfully!'
     else
       render :new
     end
@@ -33,11 +36,15 @@ class ProponentsController < ApplicationController
   def update
     @proponent = Proponent.find(params[:id])
     update_params = proponent_params
-    update_params[:salary] = update_params[:salary].gsub('R$', '').gsub('.', '').gsub(',', '.')[1..-1] if update_params[:salary].present? and update_params[:salary].include?('R$')
+    if update_params[:salary].present? and update_params[:salary].include?('R$')
+      update_params[:salary] =
+        update_params[:salary].gsub('R$', '').gsub('.', '').gsub(',',
+                                                                 '.')[1..-1]
+    end
 
     if @proponent.update(update_params)
       update_salary # apenas para exemplo pois o update anterior já atualiza o salário.
-      redirect_to proponents_path, notice: "Proponent updated successfully!"
+      redirect_to proponents_path, notice: 'Proponent updated successfully!'
     else
       render :edit
     end
@@ -70,8 +77,8 @@ class ProponentsController < ApplicationController
   def proponent_params
     params.require(:proponent).permit(
       :name, :cpf, :birthdate, :salary, :inss_discount,
-      address_attributes: [:id, :street, :building_number, :district, :city, :state, :zip_code],
-      proponent_phones_attributes: [:id, :phone_type, :phone_number, :info, :_destroy]
+      address_attributes: %i[id street building_number district city state zip_code],
+      proponent_phones_attributes: %i[id phone_type phone_number info _destroy]
     )
   end
 
