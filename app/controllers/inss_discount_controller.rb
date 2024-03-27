@@ -7,8 +7,6 @@ class InssDiscountController < ApplicationController
 
     result = InssCalcService.new(salary).call
 
-    puts result
-
     return render json: { inss_discount: result }, status: :ok
   end
 end

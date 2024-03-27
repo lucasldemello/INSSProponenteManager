@@ -33,7 +33,6 @@ class ProponentsController < ApplicationController
   def update
     @proponent = Proponent.find(params[:id])
     update_params = proponent_params
-    debugger
     update_params[:salary] = update_params[:salary].gsub('R$', '').gsub('.', '').gsub(',', '.') if update_params[:salary].present? and update_params[:salary].include?('R$')
 
     if @proponent.update(update_params)
