@@ -33,7 +33,8 @@ class ProponentsController < ApplicationController
   def update
     @proponent = Proponent.find(params[:id])
     update_params = proponent_params
-    update_params[:salary] = update_params[:salary].replace('R$', '').gsub('.', '').gsub(',', '.') if update_params[:salary].present? and update_params[:salary].include?('R$')
+    debugger
+    update_params[:salary] = update_params[:salary].gsub('R$', '').gsub('.', '').gsub(',', '.') if update_params[:salary].present? and update_params[:salary].include?('R$')
 
     if @proponent.update(update_params)
       redirect_to proponents_path, notice: "Proponent updated successfully!"
