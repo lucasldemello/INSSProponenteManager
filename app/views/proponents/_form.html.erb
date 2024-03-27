@@ -88,7 +88,7 @@
         <div class="row">
           <div class="form-group col-md-3">
             <%= proponent_phone_fields.label :phone_type, 'Tipo de telefone' %>
-            <%= proponent_phone_fields.select :phone_type, phone_type_options, { prompt: 'Selecione o tipo' }, class: 'form-control' %>
+            <%= proponent_phone_fields.select :phone_type, phone_type_options, { prompt: 'Selecione o tipo' }, { class: 'form-control', selected: proponent_phone_fields.object.phone_type } %>
           </div>
 
           <div class="form-group col-md-3">
@@ -104,6 +104,7 @@
       </div>
     <% end %>
     <%= form.submit 'Salvar', class: 'btn btn-primary mt-4' %>
+    <%= link_to 'Voltar', proponents_path, class: 'btn btn-secondary mt-4' %>
   <% end %>
 </div>
 
