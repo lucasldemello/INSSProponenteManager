@@ -137,7 +137,7 @@
       const salaryValue = inputValue.replace(',', '.');
 
       if (!isNaN(salaryValue)) {
-        alert('Calculando desconto do INSS...')
+        //alert('Calculando desconto do INSS...')
         fetch('/inss_discount/calculate', {
           method: 'POST',
           headers: {
